@@ -6,12 +6,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 //Importamos plugin de copy
 const CopyPlugin = require('copy-webpack-plugin');
+//Importamos plugin minimizer CSS
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+//Importamos pluging terser
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js', // indicamos punto de entrada de nuestra aplicacion
     output: {
         path: path.resolve(__dirname,'dist'), //resolve nos permite saber el directorio del proyecto. 'dist' es un standar (distribucion)
-        filename: 'main.js', //nombre del archivo resultante
+        filename: '[name].[contenthash].js', //nombre del archivo resultante - se le puede agregar un hash
         assetModuleFilename: 'assets/images/[hash][ext][query]' //para que el caso de las imagenes se puedan copiar en este directorio con el nombre hasheado la misma extension
     },    
     resolve:{  
@@ -50,7 +54,7 @@ module.exports = {
                     options: { //agregamos opciones de configuracion
                         limit: 10000,  // Tamaño del recurso
                         mimetype: "applicaciont/font-woof", //Especificamos el tipo de archivo
-                        name: "[name].[ext]", //para que respete el nombre del archivo y la extensión. Podriamos cambiarla si quisieramos 
+                        name: "[name].[contenthash].[ext]", //para que respete el nombre del archivo y la extensión. Podriamos cambiarla si quisieramos 
                         outputPath: "./assets/fonts/", //indicamos a donde vamos a guardar los archivos en el directorio dist
                         publicPath: "./assets/fonts/", //especificamos el directorio publico sin compilaciones
                         esModule: false //avisamos explicitamente si es o no un modulo, en este caso NO.
@@ -67,7 +71,9 @@ module.exports = {
             template: './public/index.html', //especificamos la ruta del template que vamos a usar
             filename: './index.html', // nombre del archivo que va a generar en dist a partir del template y las tranformaciones que realizará
         }),
-        new MiniCssExtractPlugin(), //instanciamos plugin de css
+        new MiniCssExtractPlugin({//instanciamos plugin de css
+            filename: 'assets/[name].[contenthash].css' //agregamos el nombre del main.css sumado un hash
+        }), 
         new CopyPlugin({ //instanciamos plugin para copiar archivos a dist
             patterns: [
                 {
@@ -76,6 +82,14 @@ module.exports = {
                     to: "assets/images", //indicamos donde le vamos a mover los archivos en la carpeta dist
                 }
             ]
-        })
-    ]
+        }),        
+    ],
+    // Seccion para indicar si se realizar un proceso de optimización y que plugins se utilizar para ello
+    optimization:{
+        minimize: true,
+        minimizer: [
+            new CssMinimizerPlugin(), //instancimamos plugin para minimizar css
+            new TerserPlugin(), //instancimamos plugin para minimizar js
+        ]
+    }
 };
