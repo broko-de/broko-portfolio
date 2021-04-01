@@ -12,6 +12,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname,'dist'), //resolve nos permite saber el directorio del proyecto. 'dist' es un standar (distribucion)
         filename: 'main.js', //nombre del archivo resultante
+        assetModuleFilename: 'assets/images/[hash][ext][query]' //para que el caso de las imagenes se puedan copiar en este directorio con el nombre hasheado la misma extension
     },    
     resolve:{  
         extensions: ['.js'] //especificamos con que tipo de extensiones vamos a trabajar .js .jsx etc
@@ -40,7 +41,23 @@ module.exports = {
             {
                 test: /\.png/, // expresion regular para incluir archivos con extension .png
                 type: 'asset/resource' //
+            },
+            //regla para incluir las fuentas
+            {
+                test: /\.(woff|woff2)$/, //indicamos extensiones de las fuentes
+                use:{
+                    loader: 'url-loader', //cargamos el loader de las fuentes
+                    options: { //agregamos opciones de configuracion
+                        limit: 10000,  // Tamaño del recurso
+                        mimetype: "applicaciont/font-woof", //Especificamos el tipo de archivo
+                        name: "[name].[ext]", //para que respete el nombre del archivo y la extensión. Podriamos cambiarla si quisieramos 
+                        outputPath: "./assets/fonts/", //indicamos a donde vamos a guardar los archivos en el directorio dist
+                        publicPath: "./assets/fonts/", //especificamos el directorio publico sin compilaciones
+                        esModule: false //avisamos explicitamente si es o no un modulo, en este caso NO.
+                    }
+                }
             }
+
         ]
     },
     //Seccion de plugins para webpack, es un arreglo donde se definirar todos los plugines.
