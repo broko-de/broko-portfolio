@@ -4,6 +4,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 //Importamos plugin para CSS
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+//Importamos plugin de copy
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js', // indicamos punto de entrada de nuestra aplicacion
@@ -43,6 +45,15 @@ module.exports = {
             template: './public/index.html', //especificamos la ruta del template que vamos a usar
             filename: './index.html', // nombre del archivo que va a generar en dist a partir del template y las tranformaciones que realizará
         }),
-        new MiniCssExtractPlugin(),
+        new MiniCssExtractPlugin(), //instanciamos plugin de css
+        new CopyPlugin({ //instanciamos plugin para copiar archivos a dist
+            patterns: [
+                {
+                    from: path.resolve(__dirname,"src","assets/images"), //indicamos desde vamos obtener los archivos a copiar
+                    //path.resolve('wwwroot', 'static_files/png/', '../gif/image.gif'); en el caso de quere incluir un archivo en particular
+                    to: "assets/images", //indicamos donde le vamos a mover los archivos en la carpeta dist
+                }
+            ]
+        })
     ]
 };
