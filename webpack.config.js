@@ -35,6 +35,11 @@ module.exports = {
                      'css-loader',
                      'stylus-loader'
                     ],
+            },
+            //regla para hacer uso de assets module
+            {
+                test: /\.png/, // expresion regular para incluir archivos con extension .png
+                type: 'asset/resource' //
             }
         ]
     },
