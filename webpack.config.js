@@ -1,5 +1,7 @@
 const path = require('path');
 
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
     entry: './src/index.js', // indicamos punto de entrada de nuestra aplicacion
     output: {
@@ -23,4 +25,12 @@ module.exports = {
             }
         ]
     },
+    //Seccion de plugins para webpack, es un arreglo donde se definirar todos los plugines.
+    plugins: [
+        new HtmlWebpackPlugin({
+            inject: 'body', //para que haga la insercción de los elementos puede ser true, 'body', 'head', false
+            template: './public/index.html', //especificamos la ruta del template que vamos a usar
+            filename: './index.html', // nombre del archivo que va a generar en dist a partir del template y las tranformaciones que realizará
+        })
+    ]
 };
