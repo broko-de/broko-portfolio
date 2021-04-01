@@ -8,5 +8,19 @@ module.exports = {
     },    
     resolve:{  
         extensions: ['.js'] //especificamos con que tipo de extensiones vamos a trabajar .js .jsx etc
-    }
+    },
+    //difinimos un modulo que es un objeto
+    module:{ 
+        //intermanete usa rules para establecer como vamos a trabajar con distintos tipos de archivos o elementos dentro del proyecto
+        rules:[
+            //Indicamos en webpack que usaremos babel
+            {
+                test: /\.m?js$/, //expresion regular que indica que utilice cualquier extensión .js o mjs
+                exclude: /node_modules/, //para indicarle que no use nada de la carpeta node_module
+                use: {
+                    loader: 'babel-loader'
+                }
+            }
+        ]
+    },
 };
