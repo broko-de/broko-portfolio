@@ -10,6 +10,8 @@ const CopyPlugin = require('copy-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 //Importamos pluging terser
 const TerserPlugin = require('terser-webpack-plugin');
+//Importamos pluging de Dotenv
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     entry: './src/index.js', // indicamos punto de entrada de nuestra aplicacion
@@ -89,6 +91,7 @@ module.exports = {
                 }
             ]
         }),        
+        new Dotenv(), //añadimos configuracion de dotenv
     ],
     // Seccion para indicar si se realizar un proceso de optimización y que plugins se utilizar para ello
     optimization:{
