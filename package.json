@@ -10,19 +10,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gndx/js-portfolio.git"
+    "url": "git+https://github.com/broko-de/broko-portfolio.git"
   },
   "keywords": [
     "javascript",
     "html",
     "css"
   ],
-  "author": "oscar barajas <oscar@gndx.dev>",
+  "author": "Fede Liquin <josefliquin@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gndx/js-portfolio/issues"
+    "url": "https://github.com/broko-de/broko-portfolio/issues"
   },
-  "homepage": "https://github.com/gndx/js-portfolio#readme",
+  "homepage": "https://github.com/broko-de/broko-portfolio#readme",
   "devDependencies": {
     "@babel/core": "^7.13.14",
     "@babel/plugin-transform-runtime": "^7.13.10",
