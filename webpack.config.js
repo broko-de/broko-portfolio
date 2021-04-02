@@ -8,10 +8,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 //Importamos plugin minimizer CSS
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-//Importamos pluging terser
+//Importamos plugin terser
 const TerserPlugin = require('terser-webpack-plugin');
-//Importamos pluging de Dotenv
+//Importamos plugin de Dotenv
 const Dotenv = require('dotenv-webpack');
+//Importamos plugin de Clean
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js', // indicamos punto de entrada de nuestra aplicacion
@@ -92,6 +94,7 @@ module.exports = {
             ]
         }),        
         new Dotenv(), //añadimos configuracion de dotenv
+        new CleanWebpackPlugin(), //añadimos la configuracion de clean webpage
     ],
     // Seccion para indicar si se realizar un proceso de optimización y que plugins se utilizar para ello
     optimization:{
