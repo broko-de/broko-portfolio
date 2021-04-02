@@ -19,7 +19,13 @@ module.exports = {
         assetModuleFilename: 'assets/images/[hash][ext][query]' //para que el caso de las imagenes se puedan copiar en este directorio con el nombre hasheado la misma extension
     },    
     resolve:{  
-        extensions: ['.js'] //especificamos con que tipo de extensiones vamos a trabajar .js .jsx etc
+        extensions: ['.js'], //especificamos con que tipo de extensiones vamos a trabajar .js .jsx etc
+        alias: { // Definicion de alias para poder usarlos en nuestros archivos js
+            '@utils': path.resolve(__dirname,'src/utils/'),
+            '@templates': path.resolve(__dirname,'src/templates/'),
+            '@styles': path.resolve(__dirname,'src/styles/'),
+            '@images': path.resolve(__dirname,'src/assets/images/'),
+        }
     },
     //difinimos un modulo que es un objeto
     module:{ 
@@ -56,7 +62,7 @@ module.exports = {
                         mimetype: "applicaciont/font-woof", //Especificamos el tipo de archivo
                         name: "[name].[contenthash].[ext]", //para que respete el nombre del archivo y la extensión. Podriamos cambiarla si quisieramos 
                         outputPath: "./assets/fonts/", //indicamos a donde vamos a guardar los archivos en el directorio dist
-                        publicPath: "./assets/fonts/", //especificamos el directorio publico sin compilaciones
+                        publicPath: "../assets/fonts/", //especificamos el directorio publico sin compilaciones
                         esModule: false //avisamos explicitamente si es o no un modulo, en este caso NO.
                     }
                 }
