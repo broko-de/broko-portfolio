@@ -8,6 +8,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 //Importamos pluging de Dotenv
 const Dotenv = require('dotenv-webpack');
+//Importamos bundle-analyzer
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer');
 
 module.exports = {
     entry: './src/index.js', // indicamos punto de entrada de nuestra aplicacion
@@ -90,6 +92,7 @@ module.exports = {
             ]
         }),        
         new Dotenv(), //añadimos configuracion de dotenv
+        new BundleAnalyzerPlugin(), //añadimos el bundle analyzer
     ],
     //Seccion para agregar parametros de configuracion del servidor dev para webpack
     devServer:{
