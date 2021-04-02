@@ -9,7 +9,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 //Importamos pluging de Dotenv
 const Dotenv = require('dotenv-webpack');
 //Importamos bundle-analyzer
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
     entry: './src/index.js', // indicamos punto de entrada de nuestra aplicacion
@@ -28,6 +28,7 @@ module.exports = {
         }
     },
     mode:'development', //especificamos el modo en el que estamos trabajando con estas configuraciones
+    devtool: 'source-map', //Habilitamos el devtool para poder mapear nuestro codigo
     watch:true,
     //difinimos un modulo que es un objeto
     module:{ 
