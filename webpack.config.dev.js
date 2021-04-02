@@ -91,5 +91,12 @@ module.exports = {
         }),        
         new Dotenv(), //añadimos configuracion de dotenv
     ],
-    
+    //Seccion para agregar parametros de configuracion del servidor dev para webpack
+    devServer:{
+        contentBase: path.join(__dirname,'dist'), //indicamos de donde se alimentara el servidor
+        compress: true, //si queremos que se compriman los archivos
+        historyApiFallback: true, //si necesitamos tener un historial de lo que sucede en el navegador
+        port: 3005, //podemos elegir el puerto
+        open: true, //para que se abra el navegador automaticamente
+    }
 };
