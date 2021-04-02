@@ -7,6 +7,7 @@ import '@styles/vars.styl';
 
 //Inicializacion de la app que carga lo que se genera en Template.js
 (async function App() {
+  console.log("Inicializando la app");
   const main = null || document.getElementById('main');
   main.innerHTML = await Template();
 })();

@@ -26,6 +26,7 @@ module.exports = {
         }
     },
     mode:'development', //especificamos el modo en el que estamos trabajando con estas configuraciones
+    watch:true,
     //difinimos un modulo que es un objeto
     module:{ 
         //intermanete usa rules para establecer como vamos a trabajar con distintos tipos de archivos o elementos dentro del proyecto
